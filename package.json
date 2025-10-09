@@ -1,14 +1,15 @@
 {
-	"name": "huggingface-vscode-chat",
-	"publisher": "HuggingFace",
-	"displayName": "Hugging Face Provider for GitHub Copilot Chat",
-	"description": "An extension that integrates Hugging Face Inference Providers into GitHub Copilot Chat",
+	"name": "privatemode-vscode",
+	"publisher": "edgeless-systems",
+	"displayName": "Privatemode Provider for GitHub Copilot Chat",
+	"description": "Privatemode confidential inference for GitHub Copilot Chat",
 	"icon": "assets/logo.png",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/huggingface/huggingface-vscode-chat"
+		"url": "https://github.com/edgelesssys/privatemode-vscode"
 	},
-	"version": "0.0.5",
+	"version": "1.0.0-beta.1",
+	"preview": true,
 	"engines": {
 		"vscode": "^1.104.0"
 	},
@@ -22,62 +23,67 @@
 	},
 	"badges": [
 		{
-		"url": "https://img.shields.io/github/stars/huggingface/huggingface-vscode-chat?style=social",
-		"description": "Star huggingface-vscode-chat on Github",
-		"href": "https://github.com/huggingface/huggingface-vscode-chat"
+		"url": "https://img.shields.io/github/stars/edgelesssys/privatemode-vscode?style=social",
+		"description": "Star privatemode-vscode on Github",
+		"href": "https://github.com/edgelesssys/privatemode-vscode"
 		},
 		{
-		"url": "https://img.shields.io/twitter/follow/huggingface?style=social",
-		"description": "Follow Hugging Face on Twitter",
-		"href": "https://x.com/huggingface"
+		"url": "https://img.shields.io/twitter/follow/EdgelessSystems?style=social",
+		"description": "Follow Edgeless Systems on X",
+		"href": "https://x.com/EdgelessSystems"
 		}
 	],
-	"homepage": "https://huggingface.co/docs/inference-providers/en/index",
+	"homepage": "https://docs.privatemode.ai/",
 	"bugs": {
-		"url": "https://github.com/huggingface/huggingface-vscode-chat/issues"
+		"url": "https://github.com/edgelesssys/privatemode-vscode/issues"
 	},
 	"license": "MIT",
 	"contributes": {
 		"languageModelChatProviders": [
 			{
-				"vendor": "huggingface",
-				"displayName": "Hugging Face",
-				"managementCommand": "huggingface.manage"
+				"vendor": "privatemode",
+				"displayName": "Privatemode",
+				"managementCommand": "privatemode.manage"
 			}
 		],
 		"commands": [
 			{
-				"command": "huggingface.manage",
-				"title": "Manage Hugging Face Provider"
+				"command": "privatemode.manage",
+				"title": "Set Privatemode API Key"
+			},
+			{
+				"command": "privatemode.test",
+				"title": "Test Privatemode Extension"
 			}
 		]
 	},
 	"main": "./out/extension.js",
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
-		"download-api": "dts dev",
-		"postdownload-api": "dts main",
-		"postinstall": "npm run download-api",
 		"compile": "tsc -p ./",
 		"lint": "eslint",
 		"format": "prettier --write .",
 		"watch": "tsc -watch -p ./",
-		"test": "pnpm run compile && vscode-test"
+		"test": "npm run compile && vscode-test",
+		"package": "vsce package -o privatemode-vscode.vsix --readme-path marketplace-readme.md",
+		"install:local": "code --install-extension privatemode-vscode.vsix"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"tiktoken": "^1.0.22"
+	},
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
+		"@stylistic/eslint-plugin": "^5.0.0",
 		"@types/node": "^22",
 		"@types/mocha": "^10.0.6",
-		"@vscode/dts": "^0.4.1",
-		"@types/vscode": "^1.103.0",
+		"@types/vscode": "^1.104.0",
 		"@vscode/test-cli": "^0.0.11",
 		"@vscode/test-electron": "^2.5.2",
+		"@vscode/vsce": "^3.6.2",
 		"eslint": "^9.13.0",
 		"prettier": "^3.1.0",
 		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.39.0"
 	},
-	"packageManager": "pnpm@8.15.4+sha512.0bd3a9be9eb0e9a692676deec00a303ba218ba279d99241475616b398dbaeedd11146f92c2843458f557b1d127e09d4c171e105bdcd6b61002b39685a8016b9e"
+	"packageManager": "pnpm@10.18.1"
 }

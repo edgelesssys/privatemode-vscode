@@ -1,0 +1,37 @@
+---
+name: "Test: static analysis"
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Prettier
+        run: npm run format
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Ensure working tree clean
+        run: |
+          if [[ -n "$(git status --short)" ]]; then
+            echo "Working tree dirty after format/lint";
+            git --no-pager diff
+            git status --short;
+            exit 1;
+          fi

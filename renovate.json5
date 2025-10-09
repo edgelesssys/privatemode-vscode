@@ -1,0 +1,50 @@
+{
+	$schema: "https://docs.renovatebot.com/renovate-schema.json",
+	extends: [
+		":preserveSemverRanges",
+		":semanticCommitsDisabled",
+		":separateMajorReleases",
+		"config:recommended",
+		"helpers:pinGitHubActionDigests",
+	],
+	commitMessagePrefix: "deps:",
+	commitMessageAction: "update",
+	addLabels: ["dependencies"],
+	prConcurrentLimit: 2,
+	packageRules: [
+		{
+			groupName: "GitHub Actions dependencies",
+			matchManagers: ["github-actions"],
+			matchUpdateTypes: [
+				"bump",
+				"digest",
+				"lockFileMaintenance",
+				"minor", // don't group major versions since they may require manual migrations
+				"patch",
+				"pin",
+				"pinDigest",
+				"rollback",
+			],
+			assignees: ["msanft"],
+			additionalReviewers: ["msanft"],
+			schedule: ["before 4am on monday"],
+		},
+		{
+			groupName: "npm dependencies",
+			matchManagers: ["npm"],
+			matchUpdateTypes: [
+				"bump",
+				"digest",
+				"lockFileMaintenance",
+				"minor", // don't group major versions since they may require manual migrations
+				"patch",
+				"pin",
+				"pinDigest",
+				"rollback",
+			],
+			assignees: ["dr75"],
+			additionalReviewers: ["dr75"],
+			schedule: ["before 4am on tuesday"],
+		},
+	],
+}

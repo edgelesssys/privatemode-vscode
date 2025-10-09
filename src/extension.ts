@@ -1,25 +1,30 @@
 import * as vscode from "vscode";
-import { HuggingFaceChatModelProvider } from "./provider";
+import { PrivatemodeChatModelProvider } from "./provider";
 
 export function activate(context: vscode.ExtensionContext) {
+	console.log("[Privatemode Extension] Activating extension");
 	// Build a descriptive User-Agent to help quantify API usage
-	const ext = vscode.extensions.getExtension("HuggingFace.huggingface-vscode-chat");
+	const ext = vscode.extensions.getExtension("privatemode.privatemode-vscode");
 	const extVersion = ext?.packageJSON?.version ?? "unknown";
 	const vscodeVersion = vscode.version;
 	// Keep UA minimal: only extension version and VS Code version
-	const ua = `huggingface-vscode-chat/${extVersion} VSCode/${vscodeVersion}`;
+	const ua = `privatemode-vscode/${extVersion} VSCode/${vscodeVersion}`;
 
-	const provider = new HuggingFaceChatModelProvider(context.secrets, ua);
-	// Register the Hugging Face provider under the vendor id used in package.json
-	vscode.lm.registerLanguageModelChatProvider("huggingface", provider);
+	const provider = new PrivatemodeChatModelProvider(context.secrets, ua);
+	console.log("[Privatemode Extension] Registering provider with id: privatemode");
+	// Register the Privatemode provider under the vendor id used in package.json
+	vscode.lm.registerLanguageModelChatProvider("privatemode", provider);
+	console.log("[Privatemode Extension] Provider registered successfully");
 
 	// Management command to configure API key
 	context.subscriptions.push(
-		vscode.commands.registerCommand("huggingface.manage", async () => {
-			const existing = await context.secrets.get("huggingface.apiKey");
+		vscode.commands.registerCommand("privatemode.manage", async () => {
+			const existing = await context.secrets.get("privatemode.apiKey");
 			const apiKey = await vscode.window.showInputBox({
-				title: "Hugging Face API Key",
-				prompt: existing ? "Update your Hugging Face API key" : "Enter your Hugging Face API key",
+				title: "Privatemode API Key",
+				prompt: existing
+					? "Update your Privatemode API key or leave blank to remove it"
+					: "Enter your Privatemode API key or leave blank if configured via the Privatemode proxy",
 				ignoreFocusOut: true,
 				password: true,
 				value: existing ?? "",
@@ -28,12 +33,19 @@ export function activate(context: vscode.ExtensionContext) {
 				return; // user canceled
 			}
 			if (!apiKey.trim()) {
-				await context.secrets.delete("huggingface.apiKey");
-				vscode.window.showInformationMessage("Hugging Face API key cleared.");
+				await context.secrets.delete("privatemode.apiKey");
+				vscode.window.showInformationMessage("Privatemode API key cleared.");
 				return;
 			}
-			await context.secrets.store("huggingface.apiKey", apiKey.trim());
-			vscode.window.showInformationMessage("Hugging Face API key saved.");
+			await context.secrets.store("privatemode.apiKey", apiKey.trim());
+			vscode.window.showInformationMessage("Privatemode API key saved.");
+		})
+	);
+
+	// Test command to verify extension is working
+	context.subscriptions.push(
+		vscode.commands.registerCommand("privatemode.test", async () => {
+			vscode.window.showInformationMessage("Privatemode extension is active!");
 		})
 	);
 }
