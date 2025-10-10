@@ -29,7 +29,7 @@ Privatemode is hosted in the EU and developed by [Edgeless Systems](https://www.
 1. Create a free [Privatemode account](https://www.privatemode.ai/) to get your API key.
 1. Start the Privatemode Proxy with your API key (see [below](#ℹ️-about-the-privatemode-proxy)).
 1. Open the *Manage Language Models* dialog of the GitHub Copilot Chat extension and select Privatemode as provider.
-1. If your proxy wasn't started with an API key, you can enter in VS Code.
+1. If your proxy wasn't started with an API key, you can enter one in VS Code.
 1. Choose the models you want to see in the model picker.
 
 You’re all set. Now you can chat with an AI inside VS Code while keeping your data secure.
