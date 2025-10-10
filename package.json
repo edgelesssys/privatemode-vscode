@@ -1,7 +1,7 @@
 {
 	"name": "privatemode-vscode",
 	"publisher": "edgeless-systems",
-	"displayName": "Privatemode Provider for GitHub Copilot Chat",
+	"displayName": "Privatemode AI for GitHub Copilot",
 	"description": "Privatemode confidential inference for GitHub Copilot Chat",
 	"icon": "assets/logo.png",
 	"repository": {

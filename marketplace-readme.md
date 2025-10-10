@@ -1,4 +1,4 @@
-# Privatemode AI for GitHub Copilot Chat
+# Privatemode AI for GitHub Copilot
 
 ![Preview](https://img.shields.io/badge/status-preview-yellow)
 
