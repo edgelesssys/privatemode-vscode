@@ -8,7 +8,7 @@
 		"type": "git",
 		"url": "https://github.com/edgelesssys/privatemode-vscode"
 	},
-	"version": "1.0.0-beta.1",
+	"version": "0.1.0",
 	"preview": true,
 	"engines": {
 		"vscode": "^1.104.0"
