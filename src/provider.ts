@@ -21,7 +21,9 @@ const DEFAULT_MAX_OUTPUT_TOKENS = 16000;
 // Token estimates for gpt‑oss are correct as we use the appropriate tokenizer.
 // For Qwen we must first create the tokenizer from the model, as it does not use tiktoken.
 // As a workaround, we also use the gpt‑oss tokenizer for now and reduce the max context length here.
-const DEFAULT_CONTEXT_LENGTH = 120000;
+//
+// Further reduced to avoid running into rate limits for free users.
+const DEFAULT_CONTEXT_LENGTH = 96000;
 
 /**
  * VS Code Chat provider backed by Privatemode OpenAI API.
