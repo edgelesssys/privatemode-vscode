@@ -4,13 +4,13 @@ import { PrivatemodeChatModelProvider } from "./provider";
 export function activate(context: vscode.ExtensionContext) {
 	console.log("[Privatemode Extension] Activating extension");
 	// Build a descriptive User-Agent to help quantify API usage
-	const ext = vscode.extensions.getExtension("privatemode.privatemode-vscode");
+	const ext = vscode.extensions.getExtension(context.extension.id);
 	const extVersion = ext?.packageJSON?.version ?? "unknown";
 	const vscodeVersion = vscode.version;
-	// Keep UA minimal: only extension version and VS Code version
-	const ua = `privatemode-vscode/${extVersion} VSCode/${vscodeVersion}`;
+	// Keep userAgent minimal: only extension version and VS Code version
+	const userAgent = `privatemode-vscode/${extVersion} VSCode/${vscodeVersion}`;
 
-	const provider = new PrivatemodeChatModelProvider(context.secrets, ua);
+	const provider = new PrivatemodeChatModelProvider(context.secrets, userAgent);
 	console.log("[Privatemode Extension] Registering provider with id: privatemode");
 	// Register the Privatemode provider under the vendor id used in package.json
 	vscode.lm.registerLanguageModelChatProvider("privatemode", provider);
