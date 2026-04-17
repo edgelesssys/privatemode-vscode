@@ -24,5 +24,8 @@ jobs:
       - name: Compile TypeScript
         run: npm run compile
 
+      - name: Run tests
+        run: xvfb-run npm test
+
       - name: Package VSIX
         run: npm run package
