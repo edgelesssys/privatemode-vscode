@@ -113,24 +113,13 @@ export class PrivatemodeChatModelProvider implements LanguageModelChatProvider {
 
 		const { models } = await this.fetchModels(apiKey);
 
-		// Filter models to only include those with "qwen3-coder" or "gpt-oss" in their name
-		let filteredModels = models.filter((model) => model.id.includes("qwen3-coder") || model.id.includes("gpt-oss"));
-
-		// If there are multiple "gpt-oss" models, handle based on prefix presence to be forward compatible
-		// with short model names
-		const gptOssModels = filteredModels.filter((model) => model.id.includes("gpt-oss"));
-		if (gptOssModels.length > 1) {
-			// Check if we have duplicated models (with and without "openai/" prefix)
-			const hasOpenAI_prefix = gptOssModels.some((model) => model.id.includes("openai/"));
-			const hasNoOpenAI_prefix = gptOssModels.some((model) => !model.id.includes("openai/"));
-
-			if (hasOpenAI_prefix && hasNoOpenAI_prefix) {
-				// If we have duplicated models, keep only those without "openai/" prefix
-				filteredModels = filteredModels.filter(
-					(model) => !model.id.includes("gpt-oss") || !model.id.includes("openai/")
-				);
-			}
-		}
+		// Filter models to only include supported model families
+		// and exclude models with provider prefixes (e.g., "openai/")
+		const filteredModels = models.filter(
+			(model) =>
+				(model.id.includes("qwen3-coder") || model.id.includes("gpt-oss") || model.id.includes("kimi")) &&
+				!model.id.includes("/")
+		);
 
 		const infos: LanguageModelChatInformation[] = filteredModels.map((m) => {
 			const contextLen = DEFAULT_CONTEXT_LENGTH; // Assume default

@@ -18,7 +18,7 @@ Its advanced design, among others, ensures the following:
 - Your data can't and won't be used for training.
 - Verifiable privacy and integrity through hardware-based remote attestation.
 
-With Privatemode, you can confidentially use state-of-the-art open-source models like **gpt-oss-120b** and **Qwen3-Coder** for coding, content generation, and analysis — without compromising security.
+With Privatemode, you can confidently use state-of-the-art open-source models like **Kimi K2.5** and **gpt-oss-120b** for coding, content generation, and analysis — without compromising security.
 
 Privatemode is hosted in the EU and developed by [Edgeless Systems](https://www.edgeless.systems/).
 
