@@ -215,7 +215,9 @@ export class PrivatemodeChatModelProvider implements LanguageModelChatProvider {
 				console.error(
 					"[Privatemode Model Provider] Failed to connect to Privatemode proxy at localhost:8080. Please ensure the proxy is running."
 				);
-				throw new Error("Unable to connect to Privatemode proxy. Please start your local proxy on port 8080.");
+				throw new Error("Unable to connect to Privatemode proxy. Please start your local proxy on port 8080.", {
+					cause: err,
+				});
 			}
 			console.error("[Privatemode Model Provider] Failed to fetch Privatemode models", err);
 			throw err;
@@ -626,8 +628,8 @@ export class PrivatemodeChatModelProvider implements LanguageModelChatProvider {
 				// Find the delimiter that ends the name/index segment
 				const a = data.indexOf(ARG_BEGIN);
 				const e = data.indexOf(END);
-				let delimIdx = -1;
-				let delimKind: "arg" | "end" | undefined = undefined;
+				let delimIdx: number;
+				let delimKind: "arg" | "end";
 				if (a !== -1 && (e === -1 || a < e)) {
 					delimIdx = a;
 					delimKind = "arg";

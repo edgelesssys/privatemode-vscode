@@ -11,7 +11,7 @@
 	"version": "0.1.2",
 	"preview": true,
 	"engines": {
-		"vscode": "^1.104.0"
+		"vscode": "^1.116.0"
 	},
 	"categories": [
 		"AI",
@@ -23,14 +23,14 @@
 	},
 	"badges": [
 		{
-		"url": "https://img.shields.io/github/stars/edgelesssys/privatemode-vscode?style=social",
-		"description": "Star privatemode-vscode on Github",
-		"href": "https://github.com/edgelesssys/privatemode-vscode"
+			"url": "https://img.shields.io/github/stars/edgelesssys/privatemode-vscode?style=social",
+			"description": "Star privatemode-vscode on Github",
+			"href": "https://github.com/edgelesssys/privatemode-vscode"
 		},
 		{
-		"url": "https://img.shields.io/twitter/follow/EdgelessSystems?style=social",
-		"description": "Follow Edgeless Systems on X",
-		"href": "https://x.com/EdgelessSystems"
+			"url": "https://img.shields.io/twitter/follow/EdgelessSystems?style=social",
+			"description": "Follow Edgeless Systems on X",
+			"href": "https://x.com/EdgelessSystems"
 		}
 	],
 	"homepage": "https://docs.privatemode.ai/",
@@ -72,18 +72,18 @@
 		"tiktoken": "^1.0.22"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^5.0.0",
-		"@types/node": "^24.0.0",
-		"@types/mocha": "^10.0.6",
-		"@types/vscode": "^1.104.0",
+		"@eslint/js": "^10.0.1",
+		"@stylistic/eslint-plugin": "^5.10.0",
+		"@types/mocha": "^10.0.10",
+		"@types/node": "^25.6.0",
+		"@types/vscode": "^1.116.0",
 		"@vscode/test-cli": "^0.0.12",
 		"@vscode/test-electron": "^2.5.2",
-		"@vscode/vsce": "^3.6.2",
-		"eslint": "^9.13.0",
-		"prettier": "^3.1.0",
-		"typescript": "^5.9.2",
-		"typescript-eslint": "^8.39.0"
+		"@vscode/vsce": "^3.9.0",
+		"eslint": "^10.2.0",
+		"prettier": "^3.8.3",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.58.2"
 	},
 	"packageManager": "pnpm@10.33.0"
 }
