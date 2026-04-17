@@ -8,4 +8,3 @@ dist/**
 **/*.mjs
 **/*vscode.d.ts
 .build/**
-pnpm-lock.yaml
